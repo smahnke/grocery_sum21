@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import GrocList from './components/groclist/GrocList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { groclist: [
+    { id: 1, title: "Learn Rails", complete: true },
+    { id: 2, title: "Learn React", complete: false },
+    { id: 3, title: "Learn Router", complete: false },
+]}
+  render() {
+    const { groclist } = this.state
+    return (
+      <>
+        <h1>My Grocery List</h1>
+        <GrocList groclist={groclist} name="dpl"/>
+      </>
+    )
+  }
 }
 
 export default App;
