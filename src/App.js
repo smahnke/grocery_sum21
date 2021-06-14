@@ -22,13 +22,30 @@ addGroclist = (incomingGroclist) => {
   this.setState({ groclist: [...groclist, newGroclist] })
 }
 
+completeUpdate = (id) => {
+  const { groclist } = this.state
+  this.setState({
+    groclist: groclist.map( t => {
+      if (t.id === id) {
+        return {
+          ...t,
+          complete: !t.complete
+        }
+      }
+      return t
+    })
+  })
+}
+
   render() {
     const { groclist } = this.state
     return (
       <>
         <h1>My Grocery List</h1>
         <GrocForm addGroclist={this.addGroclist}/>
-        <GrocList groclist={groclist} name="dpl"/>
+        <GrocList groclist={groclist} 
+        name="dpl" 
+        completeUpdate={this.completeUpdate}/>
       </>
     )
   }
