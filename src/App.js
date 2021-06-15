@@ -1,12 +1,27 @@
 import { Component } from 'react';
 import GrocList from './components/groclist/GrocList';
 import GrocForm from './components/groclist/GrocForm';
+//import { useState } from 'react';
+
+//const App = ({}) => {
+//   const [contacts, setContacts] = useState([
+//     { id: 1, title: "Bananas", price: 1.20, complete: true },
+//     { id: 2, title: "Bread", price: 3.99, complete: false },
+//     { id: 3, title: "Shampoo", price: 4.99, complete: false },
+// ]}
+  // return (
+  //   <>
+  //   <h1>React Contact List</h1>
+  //   <ContactList contacts={contacts}
+  //   </>
+  //   )
+  // }
 
 class App extends Component {
   state = { groclist: [
-    { id: 1, title: "Learn Rails", complete: true },
-    { id: 2, title: "Learn React", complete: false },
-    { id: 3, title: "Learn Router", complete: false },
+    { id: 1, title: "Bananas", price: 1.20, complete: true },
+    { id: 2, title: "Bread", price: 3.99, complete: false },
+    { id: 3, title: "Shampoo", price: 4.99, complete: false },
 ]}
 
 //helper function to generate ids
@@ -37,14 +52,21 @@ completeUpdate = (id) => {
   })
 }
 
+  deleteGroc = (id) => {
+    const { groclist } = this.state
+    this.setState({ groclist: groclist.filter( g => g.id !== id) })
+  }
+
   render() {
     const { groclist } = this.state
     return (
       <>
-        <h1>My Grocery List</h1>
+        <h1>Groceries</h1>
         <GrocForm addGroclist={this.addGroclist}/>
-        <GrocList groclist={groclist} 
-        name="dpl" 
+        <GrocList 
+        groclist={this.state.groclist}
+        deleteGroc={this.deleteGroc}
+        name="Shopping List" 
         completeUpdate={this.completeUpdate}/>
       </>
     )
