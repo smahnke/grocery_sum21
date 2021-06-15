@@ -1,4 +1,9 @@
-const Groc = ({ id, title, price, complete, completeUpdate, deleteGroc }) => {
+import { useState } from 'react';
+import GrocForm from './GrocForm';
+
+const Groc = ({ id, title, price, complete, completeUpdate, deleteGroc, updateGroc }) => {
+  const [editing, setEdit] = useState(false)
+
   return (
     <>
     <li style={complete ? {...styles.complete} : {} }
@@ -7,6 +12,19 @@ const Groc = ({ id, title, price, complete, completeUpdate, deleteGroc }) => {
       { title } ${price}
     </li>
     <button onClick={() => deleteGroc(id)}>Delete</button>
+    { editing ? 
+      <>
+      <GrocForm 
+        id={id} 
+        title={title} 
+        price={price} 
+        updateGroc={updateGroc} 
+        setEditing={setEditing} />
+        <button onClick={() => setEditing(!editing)}>Cancel</button>
+      </>
+      :
+      <button onClick={() => setEditing(!editing)}>Edit</button>
+    }
     </>
   )
 }

@@ -57,6 +57,8 @@ completeUpdate = (id) => {
     this.setState({ groclist: groclist.filter( g => g.id !== id) })
   }
 
+  updateGroc = 
+
   render() {
     const { groclist } = this.state
     return (

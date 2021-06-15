@@ -3,7 +3,7 @@
 // )
 import Groc from './Groc';
 
-const GrocList = ({groclist, name, completeUpdate, deleteGroc }) => {
+const GrocList = ({groclist, name, completeUpdate, deleteGroc, updateGroc }) => {
   //logic
   return (
     <>
@@ -15,7 +15,8 @@ const GrocList = ({groclist, name, completeUpdate, deleteGroc }) => {
             <Groc 
             {...t} 
             completeUpdate={completeUpdate}
-            deleteGroc={deleteGroc}/>
+            deleteGroc={deleteGroc}
+            updateGroc={updateGroc}/>
             )
         }
       </ul>
