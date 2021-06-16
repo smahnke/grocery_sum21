@@ -2,7 +2,7 @@ import { useState } from 'react';
 import GrocForm from './GrocForm';
 
 const Groc = ({ id, title, price, complete, completeUpdate, deleteGroc, updateGroc }) => {
-  const [editing, setEdit] = useState(false)
+  const [editing, setEditing] = useState(false)
 
   return (
     <>

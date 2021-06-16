@@ -33,7 +33,7 @@ getUniqId = () => {
 
 addGroclist = (incomingGroclist) => {
   const { groclist } = this.state
-  const newGroclist = { id: this.getUniqId(), ...incomingGroclist}
+  const newGroclist = { id: this.getUniqId(), title: incomingGroclist.title, price: incomingGroclist.price, complete: incomingGroclist.complete}
   this.setState({ groclist: [...groclist, newGroclist] })
 }
 
@@ -57,7 +57,15 @@ completeUpdate = (id) => {
     this.setState({ groclist: groclist.filter( g => g.id !== id) })
   }
 
-  updateGroc = 
+  updateGroc = (id, incomingGroclist) => {
+    const updatedGroc = this.state.groclist.map( g => {
+      if (g.id === id ) {
+        return incomingGroclist
+      }
+      return g
+    })
+    this.setState({ groclist: updatedGroc})
+  }
 
   render() {
     const { groclist } = this.state
@@ -66,7 +74,7 @@ completeUpdate = (id) => {
         <h1>Groceries</h1>
         <GrocForm addGroclist={this.addGroclist}/>
         <GrocList 
-        groclist={this.state.groclist}
+        groclist={groclist}
         deleteGroc={this.deleteGroc}
         name="Shopping List" 
         completeUpdate={this.completeUpdate}/>
